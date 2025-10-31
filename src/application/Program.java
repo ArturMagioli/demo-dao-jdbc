@@ -16,8 +16,7 @@ public class Program {
         
         Scanner sc = new Scanner(System.in);
 
-        // testellerDao(sc);
-
+        testSellerDao(sc);
         testDepartmentDao();
 
         sc.close();
@@ -81,5 +80,11 @@ public class Program {
         System.out.println("=== TEST 4: department findById ====");
         Department dep = departmentDao.findById(7);
         System.out.println("Result: " + dep);
+
+        System.out.println("=== TEST 5: find all departments ====");
+        List<Department> departments = departmentDao.findAll();
+        for(Department depList: departments) {
+            System.out.println(depList);
+        }
     }
 }
