@@ -68,5 +68,10 @@ public class Program {
         System.out.println("=== TEST 1: department insert ====");
         departmentDao.insert(department);
         System.out.println("Insert completed!");
+
+        System.out.println("=== TEST 2: department update ====");
+        department.setName("Stick Nation");
+        departmentDao.update(department);
+        System.out.println("update completed!");
     }
 }

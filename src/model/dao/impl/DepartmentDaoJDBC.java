@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import db.DB;
 import db.DbException;
 import model.dao.DepartmentDao;
 import model.entities.Department;
@@ -37,16 +38,33 @@ public class DepartmentDaoJDBC implements DepartmentDao {
                 if (rs.next()) {
                     department.setId(rs.getInt(1));
                 }
+                DB.closeResultSet(rs);
             }
         } catch (SQLException exception) {
             throw new DbException(exception.getMessage());
+        } finally {
+            DB.closeStatement(st);
         }
     }
 
     @Override
     public void update(Department department) {
-        // TODO Auto-generated method stub
         
+        PreparedStatement st = null;
+
+        try {
+
+            st = conn.prepareStatement("UPDATE department SET Name = ? WHERE id = ?");
+
+            st.setString(1, department.getName());
+            st.setInt(2, department.getId());
+
+            st.executeUpdate();
+        } catch (SQLException exception) {
+            throw new DbException(exception.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
