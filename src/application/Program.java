@@ -63,8 +63,8 @@ public class Program {
 
     private static void testDepartmentDao() {
         DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
-        Department department = new Department(null, "Balls");
-
+        Department department = new Department(8, "Balls");
+        
         System.out.println("=== TEST 1: department insert ====");
         departmentDao.insert(department);
         System.out.println("Insert completed!");
@@ -73,5 +73,9 @@ public class Program {
         department.setName("Stick Nation");
         departmentDao.update(department);
         System.out.println("update completed!");
+
+        System.out.println("=== TEST 3: department delete ====");
+        departmentDao.deleteById(8);
+        System.out.println("delete completed!");
     }
 }
